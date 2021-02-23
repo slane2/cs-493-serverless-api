@@ -1,0 +1,21 @@
+{
+  "name": "music-api-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sls": "sls"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.848.0",
+    "body-parser": "^1.19.0",
+    "serverless-express": "^2.0.11"
+  },
+  "devDependencies": {
+    "serverless": "^2.25.2",
+    "serverless-offline": "^6.8.0"
+  }
+}
