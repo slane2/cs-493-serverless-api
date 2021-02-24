@@ -190,7 +190,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614050782659-2021-02-23T03:26:22.659Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1614141857674-2021-02-24T04:44:17.674Z/music-api.zip"
               },
               "Handler": "handler.hello",
               "Runtime": "nodejs12.x",
@@ -220,7 +220,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614050782659-2021-02-23T03:26:22.659Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1614141857674-2021-02-24T04:44:17.674Z/music-api.zip"
               },
               "Handler": "handler_py.hellur",
               "Runtime": "python3.8",
@@ -243,24 +243,24 @@
               "HellurLogGroup"
             ]
           },
-          "HelloLambdaVersion3oTiynTHkv0vnpTjeyT4Qoeac9o59ja8KrCFFxiwo": {
+          "HelloLambdaVersionzNWNJYICkbdEY1xFmMGlFUAunucA5dWg8KqZI38kI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "xpPXMeeH3BTDw0G76+1iJv9kkLcb32qdWFhkBqsDRSg="
+              "CodeSha256": "bntpZw1qRsqBsnkBkOrY5nNfU81xbRQrNVTBHFqjojI="
             }
           },
-          "HellurLambdaVersion1HQDuUUTNAGYvdZy6nd5WtGZcGhpBUvDGcHuW5nRs5U": {
+          "HellurLambdaVersionwtBJm8AZSfIMaXeUwWOmqLzqIYdlaLr0iKHAGbAlk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HellurLambdaFunction"
               },
-              "CodeSha256": "xpPXMeeH3BTDw0G76+1iJv9kkLcb32qdWFhkBqsDRSg="
+              "CodeSha256": "bntpZw1qRsqBsnkBkOrY5nNfU81xbRQrNVTBHFqjojI="
             }
           },
           "HttpApi": {
@@ -437,13 +437,13 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersion3oTiynTHkv0vnpTjeyT4Qoeac9o59ja8KrCFFxiwo"
+              "Ref": "HelloLambdaVersionzNWNJYICkbdEY1xFmMGlFUAunucA5dWg8KqZI38kI"
             }
           },
           "HellurLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HellurLambdaVersion1HQDuUUTNAGYvdZy6nd5WtGZcGhpBUvDGcHuW5nRs5U"
+              "Ref": "HellurLambdaVersionwtBJm8AZSfIMaXeUwWOmqLzqIYdlaLr0iKHAGbAlk"
             }
           },
           "HttpApiId": {
@@ -568,6 +568,29 @@
     "functions": {
       "hello": {
         "handler": "handler.hello",
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::shaylalalala522"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "s3:ListObjects"
+            ],
+            "Resource": "arn:aws:s3:::shaylalalala522"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::shaylalalala522"
+          }
+        ],
         "events": [
           {
             "httpApi": {
@@ -584,7 +607,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersion3oTiynTHkv0vnpTjeyT4Qoeac9o59ja8KrCFFxiwo"
+        "versionLogicalId": "HelloLambdaVersionzNWNJYICkbdEY1xFmMGlFUAunucA5dWg8KqZI38kI"
       },
       "hellur": {
         "runtime": "python3.8",
@@ -604,7 +627,7 @@
         "memory": 1024,
         "timeout": 6,
         "vpc": {},
-        "versionLogicalId": "HellurLambdaVersion1HQDuUUTNAGYvdZy6nd5WtGZcGhpBUvDGcHuW5nRs5U"
+        "versionLogicalId": "HellurLambdaVersionwtBJm8AZSfIMaXeUwWOmqLzqIYdlaLr0iKHAGbAlk"
       }
     },
     "configValidationMode": "warn",
@@ -629,7 +652,7 @@
     "artifact": "/Users/shaylalane/music-api-node/.serverless/music-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/music-api/dev/1614050782659-2021-02-23T03:26:22.659Z",
+    "artifactDirectoryName": "serverless/music-api/dev/1614141857674-2021-02-24T04:44:17.674Z",
     "artifact": "music-api.zip"
   }
 }

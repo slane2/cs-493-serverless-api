@@ -17,6 +17,19 @@ plugins:
 functions:
   hello:
     handler: handler.hello
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 's3:ListBucket'
+        Resource: "arn:aws:s3:::shaylalalala522"
+      - Effect: 'Allow'
+        Action:
+          - 's3:ListObjects'
+        Resource: "arn:aws:s3:::shaylalalala522"
+      - Effect: 'Allow'
+        Action:
+          - 's3:GetObject'
+        Resource: "arn:aws:s3:::shaylalalala522"
     events:
       - httpApi:
           path: /dotify
