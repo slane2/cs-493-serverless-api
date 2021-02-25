@@ -13,6 +13,7 @@ provider:
 plugins:
   - serverless-offline
   - serverless-express
+  - serverless-iam-roles-per-function
 
 functions:
   hello:

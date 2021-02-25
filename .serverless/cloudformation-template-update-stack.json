@@ -170,7 +170,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614141857674-2021-02-24T04:44:17.674Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614224285980-2021-02-25T03:38:05.980Z/music-api.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs12.x",
@@ -184,12 +184,13 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
+            "HelloIamRoleLambdaExecution",
             "Arn"
           ]
         }
       },
       "DependsOn": [
+        "HelloIamRoleLambdaExecution",
         "HelloLogGroup"
       ]
     },
@@ -200,7 +201,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614141857674-2021-02-24T04:44:17.674Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614224285980-2021-02-25T03:38:05.980Z/music-api.zip"
         },
         "Handler": "handler_py.hellur",
         "Runtime": "python3.8",
@@ -223,24 +224,24 @@
         "HellurLogGroup"
       ]
     },
-    "HelloLambdaVersionzNWNJYICkbdEY1xFmMGlFUAunucA5dWg8KqZI38kI": {
+    "HelloLambdaVersioneFNfkgHdSnTZX7K4dMzaRo0V7iQb93YG2AEv6t0cQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "bntpZw1qRsqBsnkBkOrY5nNfU81xbRQrNVTBHFqjojI="
+        "CodeSha256": "al0hHyS/Myv/s1FIXFapSPDc+MLQXhMdztqr+gn49R0="
       }
     },
-    "HellurLambdaVersionwtBJm8AZSfIMaXeUwWOmqLzqIYdlaLr0iKHAGbAlk": {
+    "HellurLambdaVersionQ0Em73fd8htj8LHzE7JU1SZ87LLjyxuNvhT5iUhh0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HellurLambdaFunction"
         },
-        "CodeSha256": "bntpZw1qRsqBsnkBkOrY5nNfU81xbRQrNVTBHFqjojI="
+        "CodeSha256": "al0hHyS/Myv/s1FIXFapSPDc+MLQXhMdztqr+gn49R0="
       }
     },
     "HttpApi": {
@@ -412,6 +413,96 @@
         }
       },
       "DependsOn": "HttpApiIntegrationHellur"
+    },
+    "HelloIamRoleLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "music-api",
+                  "dev",
+                  "lambda"
+                ]
+              ]
+            },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:CreateLogGroup",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/music-api-dev-hello:*:*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket"
+                  ],
+                  "Resource": "arn:aws:s3:::shaylalalala522"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListObjects"
+                  ],
+                  "Resource": "arn:aws:s3:::shaylalalala522"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject"
+                  ],
+                  "Resource": "arn:aws:s3:::shaylalalala522"
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": {
+          "Fn::Join": [
+            "-",
+            [
+              "music-api",
+              "dev",
+              "hello",
+              {
+                "Ref": "AWS::Region"
+              },
+              "lambdaRole"
+            ]
+          ]
+        },
+        "ManagedPolicyArns": []
+      }
     }
   },
   "Outputs": {
@@ -423,13 +514,13 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionzNWNJYICkbdEY1xFmMGlFUAunucA5dWg8KqZI38kI"
+        "Ref": "HelloLambdaVersioneFNfkgHdSnTZX7K4dMzaRo0V7iQb93YG2AEv6t0cQ"
       }
     },
     "HellurLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HellurLambdaVersionwtBJm8AZSfIMaXeUwWOmqLzqIYdlaLr0iKHAGbAlk"
+        "Ref": "HellurLambdaVersionQ0Em73fd8htj8LHzE7JU1SZ87LLjyxuNvhT5iUhh0"
       }
     },
     "HttpApiId": {
