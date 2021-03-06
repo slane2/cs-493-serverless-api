@@ -12,8 +12,10 @@
   "dependencies": {
     "aws-sdk": "^2.848.0",
     "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "react-audio-player": "^0.14.0",
-    "serverless-express": "^2.0.11"
+    "serverless-express": "^2.0.11",
+    "serverless-http": "^2.7.0"
   },
   "devDependencies": {
     "serverless": "^2.25.2",

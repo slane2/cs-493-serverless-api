@@ -1,7 +1,12 @@
 
-service: music-api
-
+service: music-api-node
 frameworkVersion: '2'
+
+custom:
+  tableName: 'music'
+  dynamodb:
+    start:
+      migrate: true
 
 provider:
   name: aws
@@ -9,6 +14,12 @@ provider:
   lambdaHashingVersion: 20201221
   iamManagedPolicies: 
     - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+    - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+  Resource:
+        - { "Fn::GetAtt": ["MusicDynamoDBTable", "Arn" ] }
+  environment:
+    MUSIC_TABLE: ${self:custom.tableName}
+
 
 plugins:
   - serverless-offline
@@ -35,13 +46,39 @@ functions:
       - httpApi:
           path: /dotify
           method: get
-  hellur:
-    runtime: python3.8
-    handler: handler_py.hellur
+  app:
+    handler: index.handler
     events:
-      - httpApi:
-          path: /hellur
-          method: get
+      - http: ANY /
+      - http: 'ANY /{proxy+}'
+  getGenres:
+    handler: index.handler
+    events:
+      - http: 'GET /genres'
+
+resources:
+  Resources:
+    MusicDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+          # partition key
+          - AttributeName: "pk"
+            AttributeType: "S"
+            #sort key
+          - AttributeName: "sk"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "pk"
+            KeyType: "HASH"
+          - AttributeName: "sk"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: 'music'
+        # Projection:
+        #   ProjectionType: ALL
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
