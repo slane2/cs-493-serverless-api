@@ -1,6 +1,8 @@
 // References
 // https://www.serverless.com/blog/serverless-express-rest-api
-
+//https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SQS.html#sendMessage-property
+//https://www.serverless.com/blog/aws-lambda-sqs-serverless-integration
+//https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SQS.html#sendMessage-property
 
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
@@ -10,6 +12,8 @@ const express = require('express'),
 
 const MUSIC_TABLE = process.env.MUSIC_TABLE;
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+var sqs = new AWS.SQS();
 
 app.use(bodyParser.json({ strict: false }));
 
@@ -143,6 +147,67 @@ app.get('/song/:song', function (req, res) {
             res.send({
                 "URL": url
             });
+        }
+    });
+})
+
+// app.post('/play', function (req, res) {
+//     var sqs = new AWS.SQS();
+
+//     if(!req.body.artist) {
+//         return res.status(400).send({
+//             success: 'false',
+//             message: 'Missing artist'
+//         });
+//     } else if(!req.body.album) {
+//         return res.status(400).send({
+//             success: 'false',
+//             message: 'Missing album'
+//         });
+//     } else if(!req.body.song) {
+//         return res.status(400).send({
+//             success: 'false',
+//             message: 'Missing song'
+//         });
+//     }
+
+//     const song_body = JSON.stringify({
+//         artist: req.body.artist,
+//         album: req.body.album,
+//         song: req.body.song
+//     });
+    
+//     var params = {
+//         MessageBody: song_body,      
+//         QueueUrl: 'https://sqs.us-east-1.amazonaws.com/297181656029/MyQueue',
+//     };
+    
+//     sqs.sendMessage(params, function(err, data) {
+//         if (err) console.log(err, err.stack); 
+//         else     console.log(data);           
+//     });
+//     return res.status(201).send({
+//         success: 'true',
+//         message: 'You did it!',
+//     })
+// })
+
+app.post('/play', function (req, res) {
+
+    const params = {
+        MessageBody: 
+        JSON.stringify({
+            artist: req.body.artist,
+            album: req.body.album,
+            song: req.body.song
+        }),
+        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/297181656029/MyQueue'
+    };
+    sqs.sendMessage(params, function(err, data) {
+        if (err) {
+            console.log("Failed", err);
+        } else {
+            res.send({ "Success": true });
         }
     });
 })

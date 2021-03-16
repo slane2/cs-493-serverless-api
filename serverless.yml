@@ -15,6 +15,8 @@ provider:
   iamManagedPolicies: 
     - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
     - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+    - arn:aws:iam::aws:policy/AmazonSQSFullAccess
+
   Resource:
         - { "Fn::GetAtt": ["MusicDynamoDBTable", "Arn" ] }
   environment:
@@ -27,6 +29,18 @@ plugins:
   - serverless-iam-roles-per-function
 
 functions:
+  sques:
+    handler: squeshandler.handler
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - MyQueue
+              - Arn
+
+  auth:
+    handler: auth.handler
+
   hello:
     handler: handler.hello
     iamRoleStatements:
@@ -43,9 +57,17 @@ functions:
           - 's3:GetObject'
         Resource: "arn:aws:s3:::shaylalalala522"
     events:
-      - httpApi:
-          path: /dotify
-          method: get
+      # - httpApi:
+      #     path: /dotify
+      #     method: get
+      - http:
+        method: ANY
+        path: /{proxy+}
+        cors: true
+        authorizer:
+          name: auth
+          type: request
+          identitySource: method.request.header.authorization
   app:
     handler: index.handler
     events:
@@ -56,8 +78,17 @@ functions:
     events:
       - http: 'GET /genres'
 
+  play:
+    handler: index.handler
+    events:
+      - http: 'POST /play'
+
 resources:
   Resources:
+    MyQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "MyQueue"
     MusicDynamoDBTable:
       Type: "AWS::DynamoDB::Table"
       Properties:
@@ -77,49 +108,3 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: 'music'
-        # Projection:
-        #   ProjectionType: ALL
-#      - websocket: $connect
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
-#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
-#      - alb:
-#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
-#          priority: 1
-#          conditions:
-#            host: example.com
-#            path: /hello
-
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
-
-# you can add CloudFormation resource templates here
-# resources:
-#   Resources:
-#     NewResource:
-#       Type: AWS::S3::Bucket
-#       Properties:
-#         BucketName: shaylalalala522
-# Outputs:
-#   NewOutput:
-#     Description: "Description for the output"
-#     Value: "Some output value"
