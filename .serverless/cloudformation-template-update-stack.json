@@ -212,7 +212,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api-node/dev/1615918639749-2021-03-16T18:17:19.749Z/music-api-node.zip"
+          "S3Key": "serverless/music-api-node/dev/1616104268507-2021-03-18T21:51:08.507Z/music-api-node.zip"
         },
         "Handler": "squeshandler.handler",
         "Runtime": "nodejs12.x",
@@ -243,7 +243,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api-node/dev/1615918639749-2021-03-16T18:17:19.749Z/music-api-node.zip"
+          "S3Key": "serverless/music-api-node/dev/1616104268507-2021-03-18T21:51:08.507Z/music-api-node.zip"
         },
         "Handler": "auth.handler",
         "Runtime": "nodejs12.x",
@@ -274,7 +274,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api-node/dev/1615918639749-2021-03-16T18:17:19.749Z/music-api-node.zip"
+          "S3Key": "serverless/music-api-node/dev/1616104268507-2021-03-18T21:51:08.507Z/music-api-node.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs12.x",
@@ -306,7 +306,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api-node/dev/1615918639749-2021-03-16T18:17:19.749Z/music-api-node.zip"
+          "S3Key": "serverless/music-api-node/dev/1616104268507-2021-03-18T21:51:08.507Z/music-api-node.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs12.x",
@@ -337,7 +337,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api-node/dev/1615918639749-2021-03-16T18:17:19.749Z/music-api-node.zip"
+          "S3Key": "serverless/music-api-node/dev/1616104268507-2021-03-18T21:51:08.507Z/music-api-node.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs12.x",
@@ -368,7 +368,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api-node/dev/1615918639749-2021-03-16T18:17:19.749Z/music-api-node.zip"
+          "S3Key": "serverless/music-api-node/dev/1616104268507-2021-03-18T21:51:08.507Z/music-api-node.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs12.x",
@@ -392,64 +392,64 @@
         "PlayLogGroup"
       ]
     },
-    "SquesLambdaVersionFQSmhD7zQVZncYrh9WNyS226Sk8BFfHewZ9BhI8NNA": {
+    "SquesLambdaVersionNeVXBQD1TKhBwx3XzuNPJXQyMN2wrt17ZXhEDizpuMs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SquesLambdaFunction"
         },
-        "CodeSha256": "qroA40Gj2fSOwS6n8qLM5aDiBBnWjD9FR/skTe/WcrU="
+        "CodeSha256": "U9DoTp2PC4ZNMUrb/oLoQwwrPL/DRWiPcEbLTe/wltc="
       }
     },
-    "AuthLambdaVersionVT9Bwom5vgpytSyW2dZEdeqANfYQLT4QoaMsCwcn6iM": {
+    "AuthLambdaVersionUm28wmseVEBVnJQz1IdmDl7BSoz8lKm777KuUMR8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AuthLambdaFunction"
         },
-        "CodeSha256": "qroA40Gj2fSOwS6n8qLM5aDiBBnWjD9FR/skTe/WcrU="
+        "CodeSha256": "U9DoTp2PC4ZNMUrb/oLoQwwrPL/DRWiPcEbLTe/wltc="
       }
     },
-    "HelloLambdaVersion6VuUI60g238DkoXlFpWOWtKlUFqUXaGGvzlZZLrlA": {
+    "HelloLambdaVersionAr9iJVTNcVOItbZI2q8E6m9t4VZwWF71eMtquOIYUY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "qroA40Gj2fSOwS6n8qLM5aDiBBnWjD9FR/skTe/WcrU="
+        "CodeSha256": "U9DoTp2PC4ZNMUrb/oLoQwwrPL/DRWiPcEbLTe/wltc="
       }
     },
-    "AppLambdaVersion9cu0GkhWohorUTNDg9NVl7u5CHQZnGuGAceoXK1A": {
+    "AppLambdaVersionTcojWxZ5PHsPmBNMPww9mfT1ZovXN6fVtZo9biriGU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "qroA40Gj2fSOwS6n8qLM5aDiBBnWjD9FR/skTe/WcrU="
+        "CodeSha256": "U9DoTp2PC4ZNMUrb/oLoQwwrPL/DRWiPcEbLTe/wltc="
       }
     },
-    "GetGenresLambdaVersionSF1MYB5AMAhL0r7Cw8enjlJUCg0MZAz5mNleEyCafq0": {
+    "GetGenresLambdaVersionotvUmZe6f868zvRYKBwQFGRFJUVAB8MhsbDyVgG2Js": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetGenresLambdaFunction"
         },
-        "CodeSha256": "qroA40Gj2fSOwS6n8qLM5aDiBBnWjD9FR/skTe/WcrU="
+        "CodeSha256": "U9DoTp2PC4ZNMUrb/oLoQwwrPL/DRWiPcEbLTe/wltc="
       }
     },
-    "PlayLambdaVersionUl4M76iAfsRQTwh7q7BpykziPGYwGVUj4NbaZG7n9w": {
+    "PlayLambdaVersionA18pTULVFafnT2YmN1t16AgLY3TnJGqKV9RFpgAOQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PlayLambdaFunction"
         },
-        "CodeSha256": "qroA40Gj2fSOwS6n8qLM5aDiBBnWjD9FR/skTe/WcrU="
+        "CodeSha256": "U9DoTp2PC4ZNMUrb/oLoQwwrPL/DRWiPcEbLTe/wltc="
       }
     },
     "ApiGatewayRestApi": {
@@ -684,7 +684,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1615918619809": {
+    "ApiGatewayDeployment1616104251497": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -968,37 +968,37 @@
     "SquesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SquesLambdaVersionFQSmhD7zQVZncYrh9WNyS226Sk8BFfHewZ9BhI8NNA"
+        "Ref": "SquesLambdaVersionNeVXBQD1TKhBwx3XzuNPJXQyMN2wrt17ZXhEDizpuMs"
       }
     },
     "AuthLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AuthLambdaVersionVT9Bwom5vgpytSyW2dZEdeqANfYQLT4QoaMsCwcn6iM"
+        "Ref": "AuthLambdaVersionUm28wmseVEBVnJQz1IdmDl7BSoz8lKm777KuUMR8"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersion6VuUI60g238DkoXlFpWOWtKlUFqUXaGGvzlZZLrlA"
+        "Ref": "HelloLambdaVersionAr9iJVTNcVOItbZI2q8E6m9t4VZwWF71eMtquOIYUY"
       }
     },
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersion9cu0GkhWohorUTNDg9NVl7u5CHQZnGuGAceoXK1A"
+        "Ref": "AppLambdaVersionTcojWxZ5PHsPmBNMPww9mfT1ZovXN6fVtZo9biriGU"
       }
     },
     "GetGenresLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetGenresLambdaVersionSF1MYB5AMAhL0r7Cw8enjlJUCg0MZAz5mNleEyCafq0"
+        "Ref": "GetGenresLambdaVersionotvUmZe6f868zvRYKBwQFGRFJUVAB8MhsbDyVgG2Js"
       }
     },
     "PlayLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PlayLambdaVersionUl4M76iAfsRQTwh7q7BpykziPGYwGVUj4NbaZG7n9w"
+        "Ref": "PlayLambdaVersionA18pTULVFafnT2YmN1t16AgLY3TnJGqKV9RFpgAOQ"
       }
     },
     "ServiceEndpoint": {
